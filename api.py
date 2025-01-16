@@ -7,15 +7,17 @@ import os
 app = Flask(__name__)
 
 # Load the trained model
-model = tf.keras.models.load_model('./model/CNN_model-v2.h5')
-model.compile(
-    loss='categorical_crossentropy',
-    optimizer=tf.optimizers.SGD(learning_rate=0.001),
-    metrics=['accuracy']
-)
+model = tf.keras.models.load_model('/Users/mauliana/Documents/Work/GAIA/code/pneumonia_detection/x-ray_cnn_model.h5')
+# model = tf.keras.models.load_model('/Users/mauliana/Documents/Work/GAIA/git_code/pneumonia_detection_v2/model/x-ray_cnn_model.h5')
+# model.compile(
+#     loss='categorical_crossentropy',
+#     optimizer=tf.optimizers.SGD(learning_rate=0.001),
+#     metrics=['accuracy']
+# )
 
 # Define class labels
-class_labels = ['NORMAL', 'PNEUMONIA']
+# class_labels = ['NORMAL', 'PNEUMONIA']
+class_labels = ['normal', 'pneumonia non-tbc', 'pneumonia tbc']
 
 def preprocess_and_predict(img_path):
     """
