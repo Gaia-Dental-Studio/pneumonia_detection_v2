@@ -29,9 +29,10 @@ if uploaded_file is not None:
     # Display the prediction results
     if response.status_code == 200:
         result = response.json()
+        sorted_probs = sorted(result["Probability Scores"].items(), key=lambda x: x[1], reverse=True)
         st.success(f"Predicted Class: {result['Predicted Class']}")
-        st.write("### Probability Scores")
-        for class_name, probability in result["Probability Scores"].items():
-            st.write(f"{class_name}: {probability:.2f}")
+        st.write("### Confidence Scores")
+        for class_name, probability in sorted_probs:
+            st.write(f"{class_name}: {probability:.2f}%")
     else:
         st.error(f"Error: {response.json().get('error', 'Unknown error')}")
